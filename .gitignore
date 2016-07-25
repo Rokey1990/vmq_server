@@ -11,3 +11,4 @@ logs
 rebar.lock
 *.o
 *.so
+.rebar3/
