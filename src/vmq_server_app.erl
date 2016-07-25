@@ -25,6 +25,7 @@
 
 -spec start(_, _) -> {'error', _} | {'ok', pid()} | {'ok', pid(), _}.
 start(_StartType, _StartArgs) ->
+    io:format("<<<<---- start vmq_server ---->>>>~n"),
     vmq_server_cli:init_registry(),
     case vmq_server_sup:start_link() of
         {error, _} = E ->
@@ -34,7 +35,7 @@ start(_StartType, _StartArgs) ->
             %% enables the vmq_plugin mechanism to be prepared...
             %% vmq_plugin_mgr waits for the 'vmq_server_sup' process
             %% to be registered.
-            timer:sleep(500),
+    	    timer:sleep(500),
             vmq_config:configure_node(),
             R
     end.
